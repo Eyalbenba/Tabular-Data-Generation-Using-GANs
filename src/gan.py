@@ -67,14 +67,24 @@ class Discriminator(nn.Module):
 # ---------------------------
 class GAN(nn.Module):
     """ GAN that generates autoencoder embeddings """
-    def __init__(self, noise_dim, embedding_dim=32, hidden_dim=128, device="cpu", pretrained_path=None):
+    def __init__(self, noise_dim, data_dim, embedding_dim=32, hidden_dim=128, device="cpu", pretrained_path=None):
         super(GAN, self).__init__()
         print("[GAN]: Initializing model...")
         self.device = device
-        self.generator = Generator(noise_dim=noise_dim, embedding_dim=embedding_dim, hidden_dim=hidden_dim).to(self.device)
-        self.discriminator = Discriminator(embedding_dim=embedding_dim, hidden_dim=hidden_dim).to(self.device)
         self.noise_dim = noise_dim
+        self.data_dim = data_dim
         self.embedding_dim = embedding_dim
+        
+        self.generator = Generator(
+            noise_dim=noise_dim,
+            embedding_dim=embedding_dim,
+            hidden_dim=hidden_dim
+        ).to(self.device)
+        
+        self.discriminator = Discriminator(
+            embedding_dim=embedding_dim,
+            hidden_dim=hidden_dim
+        ).to(self.device)
 
         if pretrained_path and os.path.isfile(pretrained_path):
             self.load_weights(pretrained_path)
