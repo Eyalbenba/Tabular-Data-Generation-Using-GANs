@@ -27,6 +27,6 @@ class Config:
     LEARNING_RATE = 0.0005
     DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
     AUTOENCODER_EPOCHS = 10
-    EPOCHS = 20
+    EPOCHS = 100
     LEARNING_RATE_GEN = 0.0001
     LEARNING_RATE_DISC = 0.0001

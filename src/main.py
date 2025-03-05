@@ -138,24 +138,7 @@ plt.tight_layout()
 plt.savefig(f"plots/{MODEL_TYPE}_numerical_distributions.png")
 plt.close()
 
-# # Plot categorical features
-# categorical_features = dataset.categorical_columns
-# fig, axes = plt.subplots(len(categorical_features), 1, figsize=(12, 4 * len(categorical_features)))
-# for idx, feature in enumerate(categorical_features):
-#     real_counts = real_df[feature].value_counts(normalize=True)
-#     synthetic_counts = synthetic_df[feature].value_counts(normalize=True)
-#
-#     pd.DataFrame({
-#         'Real': real_counts,
-#         'Synthetic': synthetic_counts
-#     }).plot(kind='bar', ax=axes[idx])
-#
-#     axes[idx].set_title(f'Distribution of {feature}')
-#     axes[idx].legend()
-# plt.tight_layout()
-# plt.savefig(f"plots/{MODEL_TYPE}_categorical_distributions.png")
-# plt.close()
-# After generating synthetic data and before plotting distributions, add:
+
 
 # ---------------------------
 # Step 8: Evaluate Model
@@ -191,13 +174,6 @@ results = evaluate_model(
     test_labels=test_labels
 )
 
-# Save results
-# with open(f"results/{MODEL_TYPE}_evaluation.txt", "w") as f:
-#     f.write(f"Model Type: {MODEL_TYPE}\n")
-#     f.write(f"Detection AUC: {results['detection_auc']:.4f}\n")
-#     f.write(f"Efficacy Score: {results['efficacy_score']:.4f}\n")
-#
-# print(f"[Main]: Training and evaluation completed! Check plots/ directory for distribution comparisons.")
 
 # ---------------------------
 # Step 9: Visualize Evaluation Metrics
